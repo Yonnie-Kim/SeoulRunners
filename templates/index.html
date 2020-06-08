@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Webpage Title -->
+    <title>Seoul Runners</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 구글폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="text/javascript"></script>
+
+    <style type="text/css">
+      h1.title {
+        font-family: "Permanent Marker", cursive;
+        text-align: center;
+        padding: 20px;
+      }
+      .wrap {
+        width: 70%;
+        margin: 10px auto 30px auto;
+      }
+      .header {
+        text-align: center;
+      }
+      form {
+        padding: 20px;
+        align-items: center;
+      }
+      .card-columns {
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <h1 class="title">Seoul Runners</h1>
+        <h5>서울의 러닝 코스를 공유하고, 함께 즐겨봅시다.</h5>
+      </div>
+      <div class="course-input">
+        <form class="needs-validation" novalidate>
+          <div class="form-row">
+            <div class="col-md-3 mb-3">
+              <label for="validationTooltip04">Origin</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationTooltip04"
+                placeholder="동호대교"
+                required
+              />
+              <div class="invalid-tooltip">
+                출발지를 입력해주세요.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationTooltip05">Destination</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationTooltip05"
+                placeholder="반포대교"
+                required
+              />
+              <div class="invalid-tooltip">
+                도착지를 입력해주세요.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationTooltip03">Comment</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationTooltip03"
+                placeholder="코스에 대한 간단한 설명을 넣어주세요."
+                required
+              />
+              <div class="invalid-tooltip">
+                설명을 입력해주세요.
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- 코스 카드리스팅 영역 -->
+      <div class="card-columns">
+        <div class="card">
+          <img
+            class="card-img-top"
+            src="https://c.static-nike.com/a/images/w_1920,c_limit/bub8vzpmxpebobnrenml/long-distance-marathon-running-shoes.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <p class="card-text">
+              운동이 단순히 근육을 단단하게 만들고 심장 기능을 강화하는 데만
+              효과적인 것은 아니다. 노력하는 '나'라는 존재에 대한 자부심을 갖게
+              만든다. 나이듦이라는 어쩔 수 없는 한계에 넋 놓고 앉아 있는 것이
+              아니다. 분발하며 더 나은 인간으로 성장하겠다는 자신감을 보여준다.
+              그런 자부심과 자신감을 발산하는데, 어찌 내가 예전에 알던 평범한
+              사람으로 보이겠는가.
+            </p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                <cite title="Source Title">마녀체력 - 이영미</cite>
+              </small>
+            </footer>
+          </div>
+        </div>
+        <div class="card p-3">
+          <blockquote class="blockquote mb-0 card-body">
+            <p>
+              ㅇㅇㅇ
+            </p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </small>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="card">
+          <img
+            class="card-img-top"
+            src="/static/route1.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">동호대교 ~ 반포대교</h5>
+            <p class="card-text">
+              3.5km, 동호대교 북단 (옥수역) ~ 반포대교 북단 (서빙고역) 코스
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card bg-primary text-white text-center p-3">
+          <blockquote class="blockquote mb-0">
+            <p>
+              제20회 여성마라톤대회 <br />
+              2020.09.05 토요일 <br />
+              D-95
+            </p>
+            <!-- <footer class="blockquote-footer">
+              <small>
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </small>
+            </footer> -->
+          </blockquote>
+        </div>
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              This card has supporting text below as a natural lead-in to
+              additional content.
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F200530102841-nike-dont-do-it.jpg"
+            alt="Card image"
+          />
+        </div>
+        <!-- <div class="card p-3 text-right">
+          <blockquote class="blockquote mb-0">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante.
+            </p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </small>
+            </footer>
+          </blockquote>
+        </div> -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              네가 이루고 싶은 게 있거든 체력을 먼저 길러라.
+            </h5>
+            <p class="card-text">
+              평생 해야 할 일이라고 생각되거든 체력을 먼저 길러라. 게으름, 나태,
+              권태, 짜증, 우울, 분노, 모두 체력이 버티지 못해, 정신이 몸의
+              지배를 받아 나타나는 증상이야. 네가 후반에 종종 무너지는 이유,
+              데미지를 입은 후 회복이 더딘 이유, 실수한 후 복귀가 더딘 이유,
+              모두 체력의 한계 때문이다. 체력이 약하면 빨리 편안함을 찾게
+              마련이고, 그러다 보면 인내심이 떨어지고 그 피로감을 견디지 못하게
+              되면 승부 따윈 상관없는 지경에 이르지. 이기고 싶다면 충분한 고민을
+              버텨줄 몸을 먼저 만들어. ‘정신력’은 ‘체력’이란 외피의 보호 없이는
+              구호밖에 안 돼.
+            </p>
+            <footer class="blockquote-footer">
+              <small>
+                <cite title="Source Title">미생</cite>
+              </small>
+            </footer>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
