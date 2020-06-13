@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>구글맵API 활용 연습 | 김연경</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcNY53NxpY5QLQ-LtH1ifeWvEJQylhUNA&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <!-- 구글폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 10px;
+        padding: 0;
+      }
+      h1.title {
+        font-family: "Permanent Marker", cursive;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+    <script>
+      (function (exports) {
+        "use strict";
+
+        function initMap() {
+          exports.map = new google.maps.Map(document.getElementById("map"), {
+            center: {
+              lat: 37.519976,
+              lng: 126.994065,
+            },
+            zoom: 16,
+          });
+        }
+
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
+  </head>
+  <body>
+    <h1 class="title">Seoul Runners</h1>
+    <div id="map"></div>
+  </body>
+</html>
