@@ -9,4 +9,4 @@ Seoul Runners
 - **공유하기**: 코스의 시작점, 도착점 입력, 사진 업로드(optional) 하면 지도 API를 검색해서 코스가 등록됨. 데이터베이스에 저장되면서 리스팅 카드에 추가됨
 
 ### 소스
-Naver Maps API: https://www.ncloud.com/product/applicationService/maps
+Google Maps API
