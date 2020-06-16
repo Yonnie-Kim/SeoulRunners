@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>맵API 연습2 | 김연경</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 구글폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 500px;
+        margin: 20px;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: "Roboto", "sans-serif";
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      h1.title {
+        font-family: "Permanent Marker", cursive;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">Seoul Runners _Let's Run!</h1>
+    <div>Alert msg: Directions request returned no results.</div>
+    <div>
+      The feature is not available in the area, or with low data quality or
+      availability.......omg...
+    </div>
+
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 13,
+          center: { lat: 37.519976, lng: 126.994065 },
+        });
+        directionsRenderer.setMap(map);
+
+        $(document).ready(function () {
+          calculateAndDisplayRoute(directionsService, directionsRenderer);
+        });
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        var start = new google.maps.LatLng(37.539823, 127.018396);
+        var end = new google.maps.LatLng(37.51913, 126.994278);
+        directionsService.route(
+          {
+            origin: start,
+            destination: end,
+            travelMode: "WALKING",
+          },
+          function (response, status) {
+            if (status === "OK") {
+              directionsRenderer.setDirections(response);
+            } else {
+              window.alert("Directions request failed due to " + status);
+            }
+          }
+        );
+      }
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcNY53NxpY5QLQ-LtH1ifeWvEJQylhUNA&callback=initMap"
+    ></script>
+  </body>
+</html>
