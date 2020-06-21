@@ -72,37 +72,39 @@
             if ((response["result"] = "success")) {
               let routes = response["routes"];
 
-              routeNo = routes[0]["routeNo"];
-              originX = routes[0]["originX"];
-              originY = routes[0]["originY"];
-              destinationX = routes[0]["destinationX"];
-              destinationY = routes[0]["destinationY"];
-              passX = routes[0]["passX"];
-              passY = routes[0]["passY"];
-              originName = routes[0]["originName"];
-              destinationName = routes[0]["destinationName"];
+              for (let i = 0; i < routes.length; i++) {
+                routeNo = routes[i]["routeNo"];
+                originX = routes[i]["originX"];
+                originY = routes[i]["originY"];
+                destinationX = routes[i]["destinationX"];
+                destinationY = routes[i]["destinationY"];
+                passX = routes[i]["passX"];
+                passY = routes[i]["passY"];
+                originName = routes[i]["originName"];
+                destinationName = routes[i]["destinationName"];
 
-              initTmap();
+                let temp_html = `<div class="card">
+                   <div id="map_wrap${routeNo}" class="map_wrap3">
+                      <div id="map_div${routeNo}"></div>
+                   </div>
+                   <div class="card-body">
+                      <h5 class="card-title">${originName} ~ ${destinationName}</h5>
+                      <div class="map_act_btn_wrap clear_box"></div>
+                       <p id="result${routeNo}"></p>
+                  </div>
+                 </div>`;
+                $("#card-listing").append(temp_html);
+
+                initTmap();
+              }
             }
           },
         });
       }
 
       function initTmap() {
-        // 0. 변수는 잘 받아왔는지? 확인
-        console.log(
-          routeNo,
-          originX,
-          originY,
-          destinationX,
-          destinationY,
-          passX,
-          passY,
-          originName,
-          destinationName
-        );
         // 1. 지도 띄우기
-        map = new Tmapv2.Map("map_div", {
+        map = new Tmapv2.Map("map_div" + routeNo, {
           center: new Tmapv2.LatLng(
             (originY + destinationY) / 2,
             (originX + destinationX) / 2
@@ -314,7 +316,7 @@
         padding: 20px;
       }
       .wrap {
-        width: 70%;
+        width: 90%;
         margin: 10px auto 30px auto;
       }
       .header {
@@ -336,6 +338,8 @@
         <h1 class="title">Seoul Runners</h1>
         <h5>서울의 러닝 코스를 공유하고, 함께 즐겨봅시다.</h5>
       </div>
+
+      <!-- 유저 참여영역 보류
       <div class="course-input">
         <form class="needs-validation" novalidate>
           <div class="form-row">
@@ -381,10 +385,10 @@
           </div>
           <button class="btn btn-primary" type="submit">Submit</button>
         </form>
-      </div>
+      </div> -->
 
       <!-- 코스 카드리스팅 영역 -->
-      <div class="card-columns">
+      <div class="card-columns" id="card-listing">
         <div class="card">
           <img
             class="card-img-top"
@@ -409,8 +413,8 @@
         </div>
         <div class="card p-3">
           <blockquote class="blockquote mb-0 card-body">
-            <p>
-              개발자에게 잘 해주자
+            <p class="card-title">
+              개발자에게 잘 해주자... <br />개발자를 소중히 여기자...
             </p>
             <footer class="blockquote-footer">
               <small class="text-muted">
@@ -419,71 +423,13 @@
             </footer>
           </blockquote>
         </div>
-        <div class="card">
-          <img
-            class="card-img-top"
-            src="/static/route1.png"
-            alt="Card image cap"
-          />
-          <div class="card-body">
-            <h5 class="card-title">동호대교 ~ 반포대교</h5>
-            <p class="card-text">
-              3.5km, 동호대교 북단 (옥수역) ~ 반포대교 북단 (서빙고역) 코스
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
-          </div>
-        </div>
-        <div class="card bg-primary text-white text-center p-3">
-          <blockquote class="blockquote mb-0">
-            <p>
-              제20회 여성마라톤대회 <br />
-              2020.09.05 토요일 <br />
-              D-95
-            </p>
-            <!-- <footer class="blockquote-footer">
-              <small>
-                Someone famous in <cite title="Source Title">Source Title</cite>
-              </small>
-            </footer> -->
-          </blockquote>
-        </div>
+
         <div class="card">
           <img
             class="card-img"
             src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F200530102841-nike-dont-do-it.jpg"
             alt="Card image"
           />
-        </div>
-        <!-- <div class="card p-3 text-right">
-          <blockquote class="blockquote mb-0">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              posuere erat a ante.
-            </p>
-            <footer class="blockquote-footer">
-              <small class="text-muted">
-                Someone famous in <cite title="Source Title">Source Title</cite>
-              </small>
-            </footer>
-          </blockquote>
-        </div> -->
-        
-        <div class="card">
-          <div id="map_wrap" class="map_wrap3">
-            <div id="map_div"></div>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">동호대교 ~ 반포대교</h5>
-            <p class="card-text">
-              <div class="map_act_btn_wrap clear_box"></div>
-              <p id="result"></p>
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
-          </div>
         </div>
         <div class="card">
           <div class="card-body">
@@ -511,9 +457,16 @@
             </p>
           </div>
         </div>
+        <div class="card bg-primary text-white text-center p-3">
+          <blockquote class="blockquote mb-0">
+            <p>
+              제20회 여성마라톤대회 <br />
+              2020.09.05 토요일 <br />
+              D-95
+            </p>
+          </blockquote>
+        </div>
       </div>
     </div>
-    
-    
   </body>
 </html>
