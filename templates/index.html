@@ -183,7 +183,7 @@
               (resultData[0].properties.totalTime / 60).toFixed(0) +
               "분";
 
-            $("#result").text(tDistance + tTime);
+            $("#result" + routeNo).text(tDistance + tTime);
 
             //기존 그려진 라인 & 마커가 있다면 초기화
             if (resultdrawArr.length > 0) {
