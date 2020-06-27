@@ -57,7 +57,8 @@
         passX,
         passY,
         originName,
-        destinationName;
+        destinationName,
+        desc;
 
       $(document).ready(function () {
         load_routes();
@@ -82,29 +83,41 @@
                 passY = routes[i]["passY"];
                 originName = routes[i]["originName"];
                 destinationName = routes[i]["destinationName"];
+                desc = routes[i]["desc"];
 
-                let temp_html = `<div class="card">
-                   <div id="map_wrap${routeNo}" class="map_wrap3">
-                      <div id="map_div${routeNo}"></div>
-                   </div>
+                let temp_html = `
+                <a 
+                class="openMap"
+                onclick="openMapArea()"
+                href="#">
+                <div class="card">                  
                    <div class="card-body">
-                      <h5 class="card-title">${originName} ~ ${destinationName}</h5>
-                      <div class="map_act_btn_wrap clear_box"></div>
-                       <p id="result${routeNo}"></p>
+                      <h5 class="card-title">&#x1F3C3; ${originName} ~ ${destinationName}</h5>
+                      <p class="card-text">${desc}</p>
                   </div>
-                 </div>`;
+                 </div>
+                 </a>`;
                 $("#card-listing").append(temp_html);
 
-                initTmap();
+                // initTmap();
               }
             }
           },
         });
       }
 
+      function openMapArea() {
+        if ($("#mapArea").css("display") == "block") {
+          $("#mapArea").hide();
+        } else {
+          $("#mapArea").show();
+        }
+        initTmap();
+      }
+
       function initTmap() {
         // 1. 지도 띄우기
-        map = new Tmapv2.Map("map_div" + routeNo, {
+        map = new Tmapv2.Map("mapArea", {
           center: new Tmapv2.LatLng(
             (originY + destinationY) / 2,
             (originX + destinationX) / 2
@@ -183,7 +196,7 @@
               (resultData[0].properties.totalTime / 60).toFixed(0) +
               "분";
 
-            $("#result" + routeNo).text(tDistance + tTime);
+            $("#result").text(tDistance + tTime);
 
             //기존 그려진 라인 & 마커가 있다면 초기화
             if (resultdrawArr.length > 0) {
@@ -310,6 +323,13 @@
     </script>
 
     <style type="text/css">
+      div.header {
+        width: 100%;
+        height: 400px;
+        background-image: url(/static/header_running.jpg);
+        background-size: cover;
+        background-position: center;
+      }
       h1.title {
         font-family: "Permanent Marker", cursive;
         text-align: center;
@@ -329,6 +349,17 @@
       .card-columns {
         padding: 20px;
       }
+      #mapArea {
+        display: none;
+        width: 70%;
+        height: 300px;
+        margin: 10px auto 10px auto;
+        align-items: center;
+        text-align: center;
+      }
+      a.openMap {
+        color: black;
+      }
     </style>
   </head>
 
@@ -337,6 +368,9 @@
       <div class="header">
         <h1 class="title">Seoul Runners</h1>
         <h5>서울의 러닝 코스를 공유하고, 함께 즐겨봅시다.</h5>
+      </div>
+      <div id="mapArea">
+        지도 API를 데리고 와서 펼칠 영역
       </div>
 
       <!-- 유저 참여영역 보류
@@ -390,11 +424,11 @@
       <!-- 코스 카드리스팅 영역 -->
       <div class="card-columns" id="card-listing">
         <div class="card">
-          <img
+          <!-- <img
             class="card-img-top"
             src="https://c.static-nike.com/a/images/w_1920,c_limit/bub8vzpmxpebobnrenml/long-distance-marathon-running-shoes.jpg"
             alt="Card image cap"
-          />
+          /> -->
           <div class="card-body">
             <p class="card-text">
               운동이 단순히 근육을 단단하게 만들고 심장 기능을 강화하는 데만
