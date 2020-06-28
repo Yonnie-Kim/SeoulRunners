@@ -38,6 +38,21 @@
       href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- og태그 -->
+    <meta property="og:title" content="&#x1F3C3;Seoul Runners" />
+    <meta
+      property="og:description"
+      content="서울의 러닝 코스를 공유하고, 함께 즐겨봅시다. 건강하고 즐거운 달리기를 위한 프로젝트입니다."
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='header_running.jpg') }}"
+    />
 
     <!-- Tmap API -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -85,8 +100,6 @@
                 originName = route["originName"];
                 destinationName = route["destinationName"];
                 desc = route["desc"];
-
-                let temp = "hello";
 
                 let temp_html =
                   //temp_html 안에서 변수들을 받아갈 때 type:number로 받아가야 하는 좌표값 변수들을 string으로 받아갔었음. 그래서 오류가 발생했던 것
@@ -369,17 +382,21 @@
     </script>
 
     <style type="text/css">
+      * {
+        font-family: "Noto Sans KR", sans-serif;
+        font-weight: 300;
+      }
+      #title {
+        font-family: "Permanent Marker", cursive;
+        text-align: center;
+        padding: 20px;
+      }
       div.header {
         width: 100%;
         height: 400px;
         background-image: url(/static/header_running.jpg);
         background-size: cover;
         background-position: center;
-      }
-      h1.title {
-        font-family: "Permanent Marker", cursive;
-        text-align: center;
-        padding: 20px;
       }
       .wrap {
         width: 80%;
@@ -388,12 +405,12 @@
       .header {
         text-align: center;
       }
-      form {
-        padding: 20px;
-        align-items: center;
-      }
       .card-columns {
         padding: 20px;
+      }
+      h5.card-title {
+        font-family: "Noto Sans KR", sans-serif;
+        font-weight: 500;
       }
       #mapArea {
         display: none;
@@ -412,8 +429,8 @@
   <body>
     <div class="wrap">
       <div class="header">
-        <h1 class="title">Seoul Runners</h1>
-        <h5>서울의 러닝 코스를 공유하고, 함께 즐겨봅시다.</h5>
+        <h1 id="title">Seoul Runners</h1>
+        <h6>서울의 러닝 코스를 공유하고, 함께 즐겨봅시다.</h6>
       </div>
       <div>
         <div id="mapArea"></div>
@@ -422,43 +439,6 @@
       </div>
       <!-- 코스 카드리스팅 영역 -->
       <div class="card-columns" id="card-listing">
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text">
-              운동이 단순히 근육을 단단하게 만들고 심장 기능을 강화하는 데만
-              효과적인 것은 아니다. 노력하는 '나'라는 존재에 대한 자부심을 갖게
-              만든다. 나이듦이라는 어쩔 수 없는 한계에 넋 놓고 앉아 있는 것이
-              아니다. 분발하며 더 나은 인간으로 성장하겠다는 자신감을 보여준다.
-              그런 자부심과 자신감을 발산하는데, 어찌 내가 예전에 알던 평범한
-              사람으로 보이겠는가.
-            </p>
-            <footer class="blockquote-footer">
-              <small class="text-muted">
-                <cite title="Source Title">마녀체력 - 이영미</cite>
-              </small>
-            </footer>
-          </div>
-        </div>
-        <div class="card p-3">
-          <blockquote class="blockquote mb-0 card-body">
-            <p class="card-title">
-              개발자에게 잘 해주자... <br />개발자를 소중히 여기자...
-            </p>
-            <footer class="blockquote-footer">
-              <small class="text-muted">
-                김연경 <cite title="Source Title">스파르타코딩클럽 中...</cite>
-              </small>
-            </footer>
-          </blockquote>
-        </div>
-
-        <div class="card">
-          <img
-            class="card-img"
-            src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F200530102841-nike-dont-do-it.jpg"
-            alt="Card image"
-          />
-        </div>
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">
@@ -480,19 +460,69 @@
                 <cite title="Source Title">미생</cite>
               </small>
             </footer>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
           </div>
         </div>
-        <div class="card bg-primary text-white text-center p-3">
-          <blockquote class="blockquote mb-0">
-            <p>
-              제20회 여성마라톤대회 <br />
-              2020.09.05 토요일 <br />
-              D-95
+
+        <a href="http://www.womenmarathon.co.kr/" target="_blank">
+          <div class="card bg-primary text-white text-center p-3">
+            <blockquote class="blockquote mb-0">
+              <p>
+                제20회 여성마라톤대회 <br />
+                2020.09.05 토요일
+              </p>
+            </blockquote>
+          </div>
+        </a>
+        <div class="card">
+          <img
+            class="card-img"
+            src="https://webcdn.executivecentre.com.cn/wp-content/uploads/2019/05/2019_5_2_blogheader.jpg"
+            alt="Card image"
+          />
+        </div>
+        <div class="card p-3">
+          <blockquote class="blockquote mb-0 card-body">
+            <p class="card-title">
+              개발자에게 잘 해주자... <br />개발자를 소중히 여기자...
             </p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                김연경 <cite title="Source Title">스파르타코딩클럽 中...</cite>
+              </small>
+            </footer>
           </blockquote>
+        </div>
+
+        <div class="card">
+          <img
+            class="card-img"
+            src="https://lh3.googleusercontent.com/proxy/uigSJhxvIUn96a4xZRzweeg7rxvS9AZFO0JYdvy2GEGoK90p3LiyNcweoiVmQFd0RlbLjBujdk_FD4AtUm9_dgAq6KOGeu3yvuGzNBsuj-A43MC4C3JStw"
+            alt="Card image"
+          />
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text">
+              운동이 단순히 근육을 단단하게 만들고 심장 기능을 강화하는 데만
+              효과적인 것은 아니다. 노력하는 '나'라는 존재에 대한 자부심을 갖게
+              만든다. 나이듦이라는 어쩔 수 없는 한계에 넋 놓고 앉아 있는 것이
+              아니다. 분발하며 더 나은 인간으로 성장하겠다는 자신감을 보여준다.
+              그런 자부심과 자신감을 발산하는데, 어찌 내가 예전에 알던 평범한
+              사람으로 보이겠는가.
+            </p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                <cite title="Source Title">마녀체력 - 이영미</cite>
+              </small>
+            </footer>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            class="card-img"
+            src="https://dynaimage.cdn.cnn.com/cnn/c_fill,g_auto,w_1200,h_675,ar_16:9/https%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F200530102841-nike-dont-do-it.jpg"
+            alt="Card image"
+          />
         </div>
       </div>
     </div>
