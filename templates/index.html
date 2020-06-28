@@ -116,6 +116,8 @@
       }
 
       function initTmap() {
+        // 0. 원래 호출했던 지도 지우고 새로 그리기
+        $("#mapArea").empty();
         // 1. 지도 띄우기
         map = new Tmapv2.Map("mapArea", {
           center: new Tmapv2.LatLng(
@@ -336,7 +338,7 @@
         padding: 20px;
       }
       .wrap {
-        width: 90%;
+        width: 80%;
         margin: 10px auto 30px auto;
       }
       .header {
