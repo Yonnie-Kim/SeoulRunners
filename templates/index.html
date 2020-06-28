@@ -74,23 +74,28 @@
               let routes = response["routes"];
 
               for (let i = 0; i < routes.length; i++) {
-                routeNo = routes[i]["routeNo"];
-                originX = routes[i]["originX"];
-                originY = routes[i]["originY"];
-                destinationX = routes[i]["destinationX"];
-                destinationY = routes[i]["destinationY"];
-                passX = routes[i]["passX"];
-                passY = routes[i]["passY"];
-                originName = routes[i]["originName"];
-                destinationName = routes[i]["destinationName"];
-                desc = routes[i]["desc"];
+                let route = routes[i];
+                routeNo = route["routeNo"];
+                originX = route["originX"];
+                originY = route["originY"];
+                destinationX = route["destinationX"];
+                destinationY = route["destinationY"];
+                passX = route["passX"];
+                passY = route["passY"];
+                originName = route["originName"];
+                destinationName = route["destinationName"];
+                desc = route["desc"];
 
-                let temp_html = `
-                <a 
+                let temp = "hello";
+
+                let temp_html =
+                  //temp_html 안에서 변수들을 받아갈 때 type:number로 받아가야 하는 좌표값 변수들을 string으로 받아갔었음. 그래서 오류가 발생했던 것
+                  `
+                <a
                 class="openMap"
-                onclick="openMapArea()"
+                onclick="openMapArea('${routeNo}', ${originX}, ${originY}, ${destinationX}, ${destinationY}, ${passX}, ${passY}, '${originName}', '${destinationName}', '${desc}')"
                 href="#">
-                <div class="card">                  
+                <div class="card">
                    <div class="card-body">
                       <h5 class="card-title">&#x1F3C3; ${originName} ~ ${destinationName}</h5>
                       <p class="card-text">${desc}</p>
@@ -98,27 +103,66 @@
                  </div>
                  </a>`;
                 $("#card-listing").append(temp_html);
-
-                // initTmap();
               }
             }
           },
         });
       }
 
-      function openMapArea() {
-        if ($("#mapArea").css("display") == "block") {
-          $("#mapArea").hide();
-        } else {
-          $("#mapArea").show();
-        }
-        initTmap();
+      function openMapArea(
+        routeNo,
+        originX,
+        originY,
+        destinationX,
+        destinationY,
+        passX,
+        passY,
+        originName,
+        destinationName,
+        desc
+      ) {
+        $("#mapArea").show();
+        $("#mapArea").empty();
+        $("#result").empty();
+        initTmap(
+          routeNo,
+          originX,
+          originY,
+          destinationX,
+          destinationY,
+          passX,
+          passY,
+          originName,
+          destinationName,
+          desc
+        );
       }
 
-      function initTmap() {
-        // 0. 원래 호출했던 지도 지우고 새로 그리기
-        $("#mapArea").empty();
-        // 1. 지도 띄우기
+      function initTmap(
+        routeNo,
+        originX,
+        originY,
+        destinationX,
+        destinationY,
+        passX,
+        passY,
+        originName,
+        destinationName,
+        desc
+      ) {
+        console.log(
+          routeNo,
+          originX,
+          originY,
+          destinationX,
+          destinationY,
+          passX,
+          passY,
+          originName,
+          destinationName,
+          desc
+        );
+        // // 1. 지도 띄우기
         map = new Tmapv2.Map("mapArea", {
           center: new Tmapv2.LatLng(
             (originY + destinationY) / 2,
@@ -195,8 +239,8 @@
               "km,";
             var tTime =
               " 총 시간 : " +
-              (resultData[0].properties.totalTime / 60).toFixed(0) +
-              "분";
+              ((resultData[0].properties.totalTime / 60) * 0.52).toFixed(0) +
+              "분 (7min/km 기준)";
 
             $("#result").text(tDistance + tTime);
 
@@ -371,66 +415,14 @@
         <h1 class="title">Seoul Runners</h1>
         <h5>서울의 러닝 코스를 공유하고, 함께 즐겨봅시다.</h5>
       </div>
-      <div id="mapArea">
-        지도 API를 데리고 와서 펼칠 영역
+      <div>
+        <div id="mapArea"></div>
+        <!-- <div class="map_act_btn_wrap clear_box"></div> -->
+        <p id="result"></p>
       </div>
-
-      <!-- 유저 참여영역 보류
-      <div class="course-input">
-        <form class="needs-validation" novalidate>
-          <div class="form-row">
-            <div class="col-md-3 mb-3">
-              <label for="validationTooltip04">Origin</label>
-              <input
-                type="text"
-                class="form-control"
-                id="validationTooltip04"
-                placeholder="동호대교"
-                required
-              />
-              <div class="invalid-tooltip">
-                출발지를 입력해주세요.
-              </div>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="validationTooltip05">Destination</label>
-              <input
-                type="text"
-                class="form-control"
-                id="validationTooltip05"
-                placeholder="반포대교"
-                required
-              />
-              <div class="invalid-tooltip">
-                도착지를 입력해주세요.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="validationTooltip03">Comment</label>
-              <input
-                type="text"
-                class="form-control"
-                id="validationTooltip03"
-                placeholder="코스에 대한 간단한 설명을 넣어주세요."
-                required
-              />
-              <div class="invalid-tooltip">
-                설명을 입력해주세요.
-              </div>
-            </div>
-          </div>
-          <button class="btn btn-primary" type="submit">Submit</button>
-        </form>
-      </div> -->
-
       <!-- 코스 카드리스팅 영역 -->
       <div class="card-columns" id="card-listing">
         <div class="card">
-          <!-- <img
-            class="card-img-top"
-            src="https://c.static-nike.com/a/images/w_1920,c_limit/bub8vzpmxpebobnrenml/long-distance-marathon-running-shoes.jpg"
-            alt="Card image cap"
-          /> -->
           <div class="card-body">
             <p class="card-text">
               운동이 단순히 근육을 단단하게 만들고 심장 기능을 강화하는 데만
